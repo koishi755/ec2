@@ -1,0 +1,40 @@
+#pythonが入っていない場合、以下のサイト等からインストール
+https://www.anaconda.com/products/individual
+
+#AWS CLiのインストール
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+
+#AWS CLIの初期設定
+aws configure --profile koishi
+AWS Access Key ID [None]: Access Key IDを入力
+AWS Secret Access Key [None]: Secret Access Keyを入力
+Default region name [None]: ap-northeast-1
+Default output format [None]: json or yaml
+
+#環境変数にAWS　CLIの情報を登録
+export AWS_PROFILE='プロファイル名'
+export AWS_ACCESS_KEY_ID='ACCESS_KEY_IDを入力'
+export AWS_SECRET_ACCESS_KEY='SECRET_ACCESS_KEYを入力'
+
+#pythonをインストール
+./Anaconda3-5.2.0-Linux-x86_64.sh
+
+#venvをインストール
+sudo apt-get install python3-venv
+dpkg -l | grep python3-v
+
+#venv作成
+~/anaconda3/bin/python3.6 -m venv aws_env -m venv aws_env
+
+#venv実行
+source aws_env/bin/activate
+
+#botoとansibleをインストール
+cd aws_env/bin
+./pip install boto
+./pip3 install ansible==2.4.2.0
+
+#ansible 実行
+ansible-playbook -i inventories/ec2.py ec2.yml 
