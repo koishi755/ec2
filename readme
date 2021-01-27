@@ -26,7 +26,7 @@ sudo apt-get install python3-venv
 dpkg -l | grep python3-v
 
 #venv作成
-~/anaconda3/bin/python3.6 -m venv aws_env -m venv aws_env
+~/anaconda3/bin/python3.6 -m venv aws_env
 
 #venv実行
 source aws_env/bin/activate
